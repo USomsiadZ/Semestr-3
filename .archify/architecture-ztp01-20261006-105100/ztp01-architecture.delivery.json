@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a2a2bb31-a503-49bb-81cc-b52c2d111487",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+  "output": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+  "specification": {
+    "sha256": "f379f6d5b7d7154aad8af03f0679c989f745a5325ce58295a373fea42d7f69aa",
+    "bytes": 4042
+  },
+  "artifact": {
+    "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+    "bytes": 759857
+  }
+}

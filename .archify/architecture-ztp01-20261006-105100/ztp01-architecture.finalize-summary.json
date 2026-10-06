@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+    "sha256": "f379f6d5b7d7154aad8af03f0679c989f745a5325ce58295a373fea42d7f69aa",
+    "bytes": 4042
+  },
+  "artifact": {
+    "path": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+    "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+    "bytes": 759857
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.21.1, libuv 1.51.0, darwin; pid=66429, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 1,
+    "shown": 1,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.finalize.json",
+    "summaryReceipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.finalize-summary.json",
+    "browserCheckReceipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.browser-check.json"
+  },
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "cache-unavailable"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 3142
+}

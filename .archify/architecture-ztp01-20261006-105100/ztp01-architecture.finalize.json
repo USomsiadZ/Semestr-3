@@ -1,0 +1,388 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "architecture",
+  "quality": "showcase",
+  "startedAt": "2026-10-06T08:52:01.808Z",
+  "specification": {
+    "path": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+    "sha256": "f379f6d5b7d7154aad8af03f0679c989f745a5325ce58295a373fea42d7f69aa",
+    "bytes": 4042
+  },
+  "artifact": {
+    "path": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+    "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+    "bytes": 759857
+  },
+  "stages": {
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "/Users/hubert/.nvm/versions/node/v22.21.1/bin/node",
+        "/Users/hubert/.agents/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/hubert/Github/studia",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "f379f6d5b7d7154aad8af03f0679c989f745a5325ce58295a373fea42d7f69aa",
+          "bytes": 4042
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 231,
+      "command": [
+        "/Users/hubert/.nvm/versions/node/v22.21.1/bin/node",
+        "/Users/hubert/.agents/skills/archify/bin/archify.mjs",
+        "deliver",
+        "architecture",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "--quality",
+        "showcase",
+        "--repo-root",
+        "/Users/hubert/Github/studia",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "a2a2bb31-a503-49bb-81cc-b52c2d111487",
+        "ok": true,
+        "command": "deliver",
+        "type": "architecture",
+        "input": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/candidate.json",
+        "output": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "specification": {
+          "sha256": "f379f6d5b7d7154aad8af03f0679c989f745a5325ce58295a373fea42d7f69aa",
+          "bytes": 4042
+        },
+        "artifact": {
+          "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+          "bytes": 759857
+        },
+        "validation": {
+          "checksPassed": 9,
+          "checkCount": 9,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 88,
+      "command": [
+        "/Users/hubert/.nvm/versions/node/v22.21.1/bin/node",
+        "/Users/hubert/.agents/skills/archify/bin/archify.mjs",
+        "check",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "artifact": {
+          "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+          "bytes": 759857
+        },
+        "checks": [
+          {
+            "name": "single_svg",
+            "ok": true,
+            "details": [
+              "found 1 <svg> block(s)"
+            ]
+          },
+          {
+            "name": "finite_svg",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "orthogonal_arrows",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "label_route_clearance",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_crossings",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "relationship_corridors",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "container_border_runs",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "route_rhythm",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "legend_clearance",
+            "ok": true,
+            "details": []
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "metrics": {
+            "properCrossings": 0,
+            "resolvedCrossovers": 0,
+            "ambiguousCorridors": 0,
+            "arrowheadCollisions": 0,
+            "containerBorderRuns": 0,
+            "labelRouteClearanceIssues": 0,
+            "labelCanvasOverflowIssues": 0,
+            "minLabelRouteClearance": 7.6,
+            "desktopReadabilityIssues": 0,
+            "viewportHeightIssues": 0,
+            "minProjectedNodeTextPx": 7.5,
+            "maxBends": 3,
+            "routesOverSuggestedBends": 1,
+            "maxStretch": 1.329,
+            "routesOverSuggestedStretch": 0,
+            "minSegmentPx": 20,
+            "minInteriorSegmentPx": 20,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
+            "shortInteriorSegmentCount": 0,
+            "microSegmentCount": 0
+          },
+          "suggestedLimits": {
+            "bendsPerRelationship": 2,
+            "stretch": 1.35,
+            "segmentPx": 16,
+            "microSegmentPx": 8
+          },
+          "routeReview": {
+            "crossings": [],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "connection-mutates-records",
+                  "from": "connection",
+                  "to": "records",
+                  "label": "CRUD przez db.records",
+                  "collectionIndex": 6,
+                  "artifactIndex": 7
+                },
+                "bends": 3,
+                "stretch": 1
+              }
+            ]
+          },
+          "leadingSpace": {
+            "measured": true,
+            "emptyTopPx": 90,
+            "emptyTopRatio": 0.16,
+            "occupiedTop": 90,
+            "viewBoxTop": 0,
+            "canvasHeight": 562,
+            "typicalNodeHeight": 68,
+            "reviewSuggested": false
+          },
+          "desktopReadability": {
+            "budgetBasis": "recognized-declared-wide",
+            "readerContract": "declared-wide-v1",
+            "availableDiagramWidth": 1003.125,
+            "actualBudgetPx": 1003.125,
+            "actualReaderWidth": 1033.125,
+            "desiredReaderWidth": 1033.125,
+            "viewportCap": 1376,
+            "limit": "source-size",
+            "requestedTargetPx": 7.5,
+            "requestedTargetMet": true,
+            "hardFloorPx": 6,
+            "hardFloorMet": true,
+            "minimumOwner": {
+              "kind": "edge",
+              "id": "main-creates-database",
+              "from": "main",
+              "to": "database"
+            },
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 7.5,
+            "semanticTextCount": 23
+          },
+          "issues": []
+        },
+        "provenance": "current",
+        "deliveryReceiptId": "a2a2bb31-a503-49bb-81cc-b52c2d111487"
+      }
+    },
+    "browser-check": {
+      "status": "fail",
+      "exitCode": 1,
+      "durationMs": 2666,
+      "command": [
+        "/Users/hubert/.nvm/versions/node/v22.21.1/bin/node",
+        "/Users/hubert/.agents/skills/archify/bin/archify.mjs",
+        "browser-check",
+        "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+        "--json",
+        "--require-provenance"
+      ],
+      "execution": "in-process",
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": false,
+        "command": "browser-check",
+        "evidenceKind": "automated-browser",
+        "status": "fail",
+        "visualReview": "not-requested",
+        "provenance": "current",
+        "deliveryReceiptId": "a2a2bb31-a503-49bb-81cc-b52c2d111487",
+        "artifact": {
+          "path": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+          "sha256": "befe7ff0fd35875b0622266f6ffd3fe277183192051e4540edd1e3dd87278623",
+          "bytes": 759857
+        },
+        "state": {
+          "detail": "read",
+          "motion": "still"
+        },
+        "chrome": {
+          "status": "available",
+          "executable": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+        },
+        "diagnostics": [
+          {
+            "code": "viewer/browser-check-runtime",
+            "severity": "error",
+            "message": "browser-check could not complete its Chrome inspection.",
+            "subject": {
+              "artifact": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html"
+            },
+            "evidence": {
+              "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.21.1, libuv 1.51.0, darwin; pid=66429, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+            },
+            "supportedFixes": [
+              "resolve the reported Chrome inspection error, then rerun browser-check"
+            ]
+          }
+        ],
+        "containment": {
+          "status": "fail",
+          "policy": "fit-or-reader-declared-readable-vertical-scroll",
+          "viewports": []
+        },
+        "themeStates": {
+          "status": "fail",
+          "viewports": []
+        },
+        "readability": {
+          "status": "fail",
+          "minimumProjectedNodeTextPx": 6,
+          "viewports": []
+        },
+        "viewerChrome": {
+          "status": "fail",
+          "viewports": []
+        },
+        "captures": {
+          "status": "not-requested",
+          "screenshots": [],
+          "contactSheet": null
+        },
+        "sidecars": {
+          "receipt": "ztp01-architecture.browser-check.json",
+          "files": []
+        },
+        "error": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.21.1, libuv 1.51.0, darwin; pid=66429, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      }
+    }
+  },
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.html"
+      },
+      "evidence": {
+        "reason": "Chrome DevTools read pipe failed: stream ended\nChrome process: still running.\nChrome transport: Node v22.21.1, libuv 1.51.0, darwin; pid=66429, exitCode=null, signalCode=null.\nChrome read pipe: readable=false, ended=true, destroyed=false, receivedBytes=0, messages=0, bufferedBytes=0.\nChrome write pipe: writable=true, ended=false, destroyed=false, completedWrites=1, writtenBytes=50, bufferedBytes=0."
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "evidence": {
+    "receipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.finalize.json",
+    "summaryReceipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.finalize-summary.json",
+    "browserCheckReceipt": "/Users/hubert/Github/studia/.archify/architecture-ztp01-20261006-105100/ztp01-architecture.browser-check.json"
+  },
+  "visualReview": "not-requested",
+  "failedStage": "browser-check",
+  "finishedAt": "2026-10-06T08:52:04.951Z",
+  "durationMs": 3142,
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "cache-unavailable"
+  }
+}

@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Architektura programu Ztp01",
+    "output": ".archify/architecture-ztp01-20261006-105100/ztp01-architecture.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    {
+      "id": "main",
+      "type": "external",
+      "label": "Ztp01.Main",
+      "sublabel": "punkt wejścia i klient API",
+      "pos": [
+        40,
+        250
+      ],
+      "size": [
+        150,
+        68
+      ]
+    },
+    {
+      "id": "interface",
+      "type": "frontend",
+      "label": "IDatabaseConnection",
+      "sublabel": "kontrakt operacji CRUD",
+      "pos": [
+        280,
+        250
+      ],
+      "size": [
+        180,
+        68
+      ]
+    },
+    {
+      "id": "database",
+      "type": "backend",
+      "label": "Database",
+      "sublabel": "właściciel stanu i fabryka połączeń",
+      "pos": [
+        550,
+        90
+      ],
+      "size": [
+        200,
+        74
+      ]
+    },
+    {
+      "id": "connection",
+      "type": "backend",
+      "label": "DatabaseConnection",
+      "sublabel": "prywatna implementacja CRUD",
+      "pos": [
+        550,
+        250
+      ],
+      "size": [
+        200,
+        74
+      ]
+    },
+    {
+      "id": "records",
+      "type": "database",
+      "label": "List<Record>",
+      "sublabel": "pamięć procesu + licznik nextId",
+      "pos": [
+        840,
+        90
+      ],
+      "size": [
+        190,
+        74
+      ]
+    },
+    {
+      "id": "record",
+      "type": "database",
+      "label": "Record",
+      "sublabel": "Id, Name, Age",
+      "pos": [
+        840,
+        250
+      ],
+      "size": [
+        150,
+        68
+      ]
+    },
+    {
+      "id": "console",
+      "type": "external",
+      "label": "Console",
+      "sublabel": "komunikaty operacji",
+      "pos": [
+        550,
+        430
+      ],
+      "size": [
+        160,
+        64
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "main-creates-database",
+      "from": "main",
+      "to": "database",
+      "label": "new Database()",
+      "fromSide": "top",
+      "toSide": "left"
+    },
+    {
+      "id": "main-uses-interface",
+      "from": "main",
+      "to": "interface",
+      "label": "wywołuje API",
+      "variant": "emphasis"
+    },
+    {
+      "id": "database-creates-connection",
+      "from": "database",
+      "to": "connection",
+      "label": "GetConnection() tworzy",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "connection-implements-interface",
+      "from": "connection",
+      "to": "interface",
+      "label": "implementuje",
+      "variant": "dashed"
+    },
+    {
+      "id": "connection-holds-database",
+      "from": "connection",
+      "to": "database",
+      "label": "referencja db",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "right"
+    },
+    {
+      "id": "database-owns-records",
+      "from": "database",
+      "to": "records",
+      "label": "przechowuje stan"
+    },
+    {
+      "id": "connection-mutates-records",
+      "from": "connection",
+      "to": "records",
+      "label": "CRUD przez db.records",
+      "fromSide": "right",
+      "toSide": "bottom"
+    },
+    {
+      "id": "records-contain-record",
+      "from": "records",
+      "to": "record",
+      "label": "zawiera 0..n",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "connection-writes-console",
+      "from": "connection",
+      "to": "console",
+      "label": "Console.WriteLine",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Przepływ z Main",
+      "items": [
+        "Main tworzy Database i pobiera połączenie przez GetConnection().",
+        "Klient wykonuje operacje wyłącznie przez IDatabaseConnection."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Stan współdzielony",
+      "items": [
+        "DatabaseConnection zachowuje referencję do Database.",
+        "Wszystkie operacje używają tej samej listy records i licznika nextId."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Stan obecnej implementacji",
+      "items": [
+        "Kod tworzy zwykły obiekt Database i nowe połączenie przy każdym GetConnection().",
+        "Nie zawiera jeszcze Singletonu, Multitonu ani puli połączeń opisanych w komentarzu zadania."
+      ]
+    }
+  ]
+}

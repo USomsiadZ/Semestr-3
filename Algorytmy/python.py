@@ -60,6 +60,7 @@ def drugi(dlugosc,tablica):
             suma = 0
             sub_poczatek = i + 1
     return poczatek,koniec
+    #output (3,7)✓
 
 
 def main():
