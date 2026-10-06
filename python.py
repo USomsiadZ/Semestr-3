@@ -47,15 +47,19 @@ def pierwszy(dlugosc,tablica):
 def drugi(dlugosc,tablica):
     suma = 0
     best = tablica[0]
-    offset = 0
-    y = 0
+    poczatek = sub_poczatek = koniec = 0
+    if dlugosc == 0:
+        return 0,0
     for i in range(dlugosc):
         suma += tablica[i]
-        best = max(best,suma)
+        if best < suma:
+            best = suma
+            koniec = i
+            poczatek = sub_poczatek
         if suma < 0:
             suma = 0
-            offset = i
-    return offset,y
+            sub_poczatek = i + 1
+    return poczatek,koniec
 
 
 def main():
