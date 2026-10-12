@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Ztp00/Ztp00.csproj",
+                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -26,7 +26,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Ztp00/Ztp00.csproj",
+                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -40,7 +40,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Ztp00/Ztp00.csproj"
+                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
