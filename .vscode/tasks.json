@@ -3,13 +3,12 @@
     "tasks": [
         {
             "label": "build",
-            "command": "dotnet",
+            "command": "/opt/homebrew/bin/python3",
             "type": "process",
             "args": [
-                "build",
-                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                "/Users/hubert/Library/Application Support/Cursor/User/cursor-exercises/run-exercise.py",
+                "csharp-build",
+                "${file}"
             ],
             "problemMatcher": "$msCompile",
             "presentation": {
@@ -18,31 +17,42 @@
                 "panel": "dedicated",
                 "showReuseMessage": false,
                 "clear": true
+            },
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         },
         {
             "label": "publish",
-            "command": "dotnet",
+            "command": "/opt/homebrew/bin/python3",
             "type": "process",
             "args": [
-                "publish",
-                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+                "/Users/hubert/Library/Application Support/Cursor/User/cursor-exercises/run-exercise.py",
+                "csharp-publish",
+                "${file}"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${fileDirname}"
+            }
         },
         {
             "label": "watch",
-            "command": "dotnet",
+            "command": "/opt/homebrew/bin/python3",
             "type": "process",
             "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/ZTP/Ztp00/Ztp00.csproj"
+                "/Users/hubert/Library/Application Support/Cursor/User/cursor-exercises/run-exercise.py",
+                "csharp-watch",
+                "${file}"
             ],
-            "problemMatcher": "$msCompile"
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${fileDirname}"
+            }
         }
     ]
 }

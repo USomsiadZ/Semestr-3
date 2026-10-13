@@ -1,48 +1,35 @@
-// C# — SKŁADNIA W MAŁYCH PORCJACH
-// Od klas wzwyż. Każda porcja: zasada -> przykład -> pułapka.
-// Ucz się 2–3 porcje naraz; odtwórz przykład z pamięci i zmień jeden element.
-// Kod jest poza komentarzami, aby edytor podświetlał składnię. To niezależne fragmenty.
-// Fragmenty nie tworzą wspólnego programu; nie wymagają kompilacji jako całość.
-// Baza: wykłady PO (bez po-10) i ztp-01. Przykłady skrócone i doprecyzowane.
-// C# 12 / .NET 8+. Regiony można zwijać w edytorze.
-
 class Punkt
 {
     public int X;
+    private int Wiek;
+    public int wiek
+    {
+        get => wiek;
+        set
+        {
+            if(value<0){wiek = 0}
+        }
+    }
     public Punkt(int x) { this.X = x; } // this = bieżący obiekt
-    public Punkt() : this(0) { }       // inny konstruktor tej klasy
+    public Punkt() : this(0) { }
 }
 var p = new Punkt(3);                  // var: kompilator ustala typ Punkt
-// Po dodaniu własnego konstruktora klasa nie dostaje automatycznie bezparametrowego.
 
-// 02. WŁAŚCIWOŚĆ Z LOGIKĄ
-// Pole przechowuje dane; property może kontrolować ich odczyt i zmianę.
-private int wiek;
-public int Wiek
-{
-    get => wiek;                      // skrót: return wiek;
-    set
-    {                             // value = nowa wartość
-        if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
-        wiek = value;
-    }
-}
-osoba.Wiek = 20;                       // setter; osoba.Wiek przy odczycie -> getter
-// nameof(value) zwraca nazwę „value”, nie zawartość zmiennej.
 
 // 03. GET / SET / INIT
-public int Id { get; private set; }    // zmiana tylko z kodu tego typu
 public string Miasto { get; init; } = ""; // ustawianie w fazie inicjalizacji
 public bool Dorosly => Wiek >= 18;     // obliczana, bez settera
 var osoba = new Osoba { Miasto = "Łomża" }; // konstruktor, potem initializer
-// init blokuje późniejsze przypisanie, ale nie zamraża obiektu w property.
+
 
 // 04. DOSTĘP
 // public: wszędzie, o ile typ też jest dostępny; private: wewnątrz typu.
 // protected: typ i jego pochodne; internal: ten sam assembly (.dll/.exe).
 // protected internal: internal LUB protected; private protected: protected W TYM assembly.
-// Klasa w namespace domyślnie jest internal; składowe klasy są private.
-// Zwykła deklaracja metody interfejsu jest domyślnie public.
+// Domyślnie
+// Klasa w namespace → internal; 
+// składowe klasy → private.
+// Deklaracja metody interfejsu → public.
 
 // 05. STATIC / CONST / READONLY
 public static int Licznik;            // wspólny dla instancji; Typ.Licznik

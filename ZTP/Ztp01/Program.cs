@@ -40,23 +40,50 @@ class Record
         return $"Record [ID={Id}, Name={Name}, Age={Age}]";
     }
 }
-
+// Singleton
+class ConnectionManager{
+    private static readonly ConnectionManager instance = new(); // tworzy jedną instancję
+    public static ConnectionManager Instancje => instance;// daje dostep do singleton
+    private ConnectionManager(){}//Prywatny konstruktor
+    public IDatabaseConnection GetDatabaseConnection(string databaseName){
+        return Database.GetInstance(databaseName).GetConnection();
+    }
+}
 // Prosta baza danych
 class Database
-{
-
+{   
+    //Multiton
+    private static readonly Dictionary<string, Database> instances = new();
+    public static Database GetInstance(string name){
+        if(!instances.ContainsKey(name)){
+            instances[name] = new Database();
+        }
+        return instances[name];
+    }
     private readonly List<Record> records; // Lista przechowująca rekordy
     private int nextId = 1; // Licznik do generowania unikalnych ID
 
-    public Database()
+    private Database()
     {
         records = new();
     }
 
     // Zwraca implementację interfejsu DatabaseConnection
+    // public IDatabaseConnection GetConnection()
+    // {
+    //     return new DatabaseConnection(this);
+    // }
+    // Object pool
+    private readonly List<IDatabaseConnection> pool = new();
+    private int index = 0;
     public IDatabaseConnection GetConnection()
     {
-        return new DatabaseConnection(this);
+        if(pool.Count < 3){
+            pool.Add(new DatabaseConnection(this));
+        }
+        IDatabaseConnection connection = pool[index % pool.Count];
+        index++;
+        return connection;
     }
 
     // Prywatna klasa wewnętrzna implementująca interfejs DatabaseConnection
@@ -137,14 +164,44 @@ public class Ztp01
 {
     public static void Main(string[] args)
     {
+        /*
         // Tworzenie bazy danych
-        Database database = new Database();
+        // Database database = new Database();
+        Database db1 = Database.GetInstance("student");
+        Database db2 = Database.GetInstance("nauczyciel");
+        Database db3 = Database.GetInstance("student");
 
         // Tworzenie połączenia z bazą danych (klient operuje na interfejsie)
-        IDatabaseConnection connection = database.GetConnection();
+        IDatabaseConnection connection = db1.GetConnection();
 
         // Operacje na bazie danych za pośrednictwem połączenia
         connection.AddRecord("Piotr", 25);
         connection.ShowAllRecords();
+        // Sprawdzenie multiton
+        Console.WriteLine(ReferenceEquals(db1,db2));//false
+        Console.WriteLine(ReferenceEquals(db1,db3));//true
+        */
+        // Sprawdzenie object pool
+        var manager = ConnectionManager.Instancje;
+        var c1 = manager.GetDatabaseConnection("Student");
+        var c2 = manager.GetDatabaseConnection("Student");
+        var c3 = manager.GetDatabaseConnection("Student");
+        var c4 = manager.GetDatabaseConnection("Student");
+        Console.WriteLine(ReferenceEquals(c1, c2));//false
+        Console.WriteLine(ReferenceEquals(c1, c3));//false
+        Console.WriteLine(ReferenceEquals(c1, c4));//true
+        c1.AddRecord("Piotr",25);
+        c2.ShowAllRecords();
+        var c5 = manager.GetDatabaseConnection("Student");
+        c5.ShowAllRecords();
+        var nauczyciel = manager.GetDatabaseConnection("Nauczyciel");
+        Console.WriteLine("---------");
+        nauczyciel.AddRecord("Anna",40);
+        c1.ShowAllRecords();
+        Console.WriteLine("---------");
+        nauczyciel.ShowAllRecords();
     }
 }
+// Baza - multiton ✓
+// Main -> ConnectionManager - singleton ✓
+// Połączeniami - object pool: max3-cyklicznie

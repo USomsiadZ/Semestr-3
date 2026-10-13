@@ -1,5 +1,4 @@
 {
     "omnisharp.useModernNet": true,
-    "omnisharp.dotnetPath": "/opt/homebrew/opt/dotnet@8/bin/dotnet",
     "python.terminal.executeInFileDir": true
 }

@@ -27,6 +27,9 @@
 # 0 1
 
 
+from random import randint
+
+
 def pierwszy(dlugosc,tablica):
     max_suma = tablica[0]
     poczatek = koniec = 0
@@ -37,7 +40,7 @@ def pierwszy(dlugosc,tablica):
         suma = 0
         for j in range(i,dlugosc):
             suma += tablica[j]
-            operacje_elementarne += 1
+            operacje_elementarne += 2
             if suma > max_suma:
                 max_suma = suma
                 poczatek = i
@@ -45,7 +48,7 @@ def pierwszy(dlugosc,tablica):
     print(f"Operację elementarne {operacje_elementarne}")
     return poczatek,koniec
     # output (3,7)✓
-    # O(dlugosc) = n*2
+    # O(dlugosc) = n^2
 
 # iteracja
 # if suma < 0: suma = 0 i reset x,y
@@ -59,7 +62,7 @@ def drugi(dlugosc,tablica):
         return 0,0
     for i in range(dlugosc):
         suma += tablica[i]
-        operacje_elementarne += 1
+        operacje_elementarne += 2
         if best < suma:
             best = suma
             koniec = i
@@ -74,14 +77,22 @@ def drugi(dlugosc,tablica):
 
 
 def main():
-    with open("in_B_1_Parzych.txt") as plik:
-        dane = plik.read().split()
-
-    dlugosc = int(dane[0])
-    tablica = [int(x) for x in dane[1:dlugosc + 1]]
-    # print(dlugosc,tablica)
-    print(pierwszy(dlugosc,tablica))
-    print(drugi(dlugosc,tablica))
+    statycznie = 0
+    if statycznie == 1:
+        with open("in_B_1_Parzych.txt") as plik:
+            dane = plik.read().split()
+        dlugosc = int(dane[0])
+        tablica = [int(x) for x in dane[1:dlugosc + 1]]
+        # print(dlugosc,tablica)
+        print(pierwszy(dlugosc,tablica))
+        print(drugi(dlugosc,tablica))
+    else:
+        dlugosc = randint(0,100)
+        tablica = []
+        for i in range(dlugosc):
+            tablica.append(randint(-100000, 100000))
+        print(pierwszy(dlugosc, tablica))
+        print(drugi(dlugosc, tablica))
 
 
 if __name__ == "__main__":
