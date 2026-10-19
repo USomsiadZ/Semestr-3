@@ -10,7 +10,6 @@ class Punkt
             if(value<0){wiek = 0}
         }
     }
-    public Punkt(int x) { this.X = x; } // this = bieżący obiekt
     public Punkt() : this(0) { }
 }
 var p = new Punkt(3);                  // var: kompilator ustala typ Punkt

@@ -31,11 +31,11 @@ from random import randint
 
 
 def pierwszy(dlugosc,tablica):
-    max_suma = tablica[0]
-    poczatek = koniec = 0
-    operacje_elementarne = 0
     if dlugosc < 1 or not tablica:
         return 0, 0
+    poczatek = koniec = 0
+    operacje_elementarne = 0
+    max_suma = tablica[0]
     for i in range(dlugosc):
         suma = 0
         for j in range(i,dlugosc):
@@ -50,16 +50,38 @@ def pierwszy(dlugosc,tablica):
     # output (3,7)✓
     # O(dlugosc) = n^2
 
+
+def trzeci(dlugosc, tablica):
+    if dlugosc < 1 or not tablica:
+        return 0, 0
+    operacje_elementarne = 0
+    max_suma = tablica[0]
+    poczatek = koniec = 0
+    for i in range(dlugosc):
+        for j in range(i, dlugosc):
+            suma = 0
+            for k in range(i, j + 1): # Dodatkowa pętla która liczy od nowa
+                suma += tablica[k]
+                operacje_elementarne += 2
+            if suma > max_suma:
+                max_suma = suma
+                poczatek = i
+                koniec = j
+    print(f"Operację elementarne {operacje_elementarne}")
+    return poczatek, koniec
+    # output (3,7)✓
+    # O(dlugosc) = n^3
+
 # iteracja
 # if suma < 0: suma = 0 i reset x,y
 # best = max(best,suma)
 def drugi(dlugosc,tablica):
     suma = 0
-    best = tablica[0]
     operacje_elementarne = 0
     poczatek = sub_poczatek = koniec = 0
     if dlugosc < 1 or not tablica:
         return 0,0
+    best = tablica[0]
     for i in range(dlugosc):
         suma += tablica[i]
         operacje_elementarne += 2
@@ -76,8 +98,9 @@ def drugi(dlugosc,tablica):
     # O(dlugosc) = n
 
 
+
 def main():
-    statycznie = 0
+    statycznie = 1
     if statycznie == 1:
         with open("in_B_1_Parzych.txt") as plik:
             dane = plik.read().split()
@@ -86,6 +109,7 @@ def main():
         # print(dlugosc,tablica)
         print(pierwszy(dlugosc,tablica))
         print(drugi(dlugosc,tablica))
+        print(trzeci(dlugosc,tablica))
     else:
         dlugosc = randint(0,100)
         tablica = []
@@ -93,6 +117,7 @@ def main():
             tablica.append(randint(-100000, 100000))
         print(pierwszy(dlugosc, tablica))
         print(drugi(dlugosc, tablica))
+        print(trzeci(dlugosc,tablica))
 
 
 if __name__ == "__main__":

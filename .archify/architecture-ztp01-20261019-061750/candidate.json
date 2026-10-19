@@ -1,0 +1,201 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Ztp01: Singleton, Multiton i Object Pool",
+    "output": ".archify/architecture-ztp01-20261019-061750/ztp01-architecture.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/USomsiadZ/Semestr-3.git",
+      "revision": "a561b692e46153b80ce4ebeed8c7eb9d8af58849"
+    }
+  },
+  "components": [
+    {
+      "id": "main",
+      "type": "external",
+      "label": "Ztp01.Main",
+      "sublabel": "klient testów",
+      "pos": [36, 52],
+      "size": [168, 68],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 172, "end_line": 212, "label": "testy w Main" }]
+    },
+    {
+      "id": "manager",
+      "type": "backend",
+      "label": "ConnectionManager",
+      "sublabel": "jedna instancja",
+      "tag": "Singleton",
+      "pos": [340, 48],
+      "size": [240, 76],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 43, "end_line": 52, "label": "Instancje i wejście" }]
+    },
+    {
+      "id": "database",
+      "type": "backend",
+      "label": "Database",
+      "sublabel": "jedna baza na nazwę",
+      "tag": "Multiton",
+      "pos": [340, 280],
+      "size": [240, 84],
+      "sources": [
+        { "path": "ZTP/Ztp01/Program.cs", "line": 55, "end_line": 73, "label": "rejestr i konstruktor" },
+        { "path": "ZTP/Ztp01/Program.cs", "line": 81, "end_line": 92, "label": "pula połączeń" }
+      ]
+    },
+    {
+      "id": "registry",
+      "type": "database",
+      "label": "Dictionary<string, Database>",
+      "sublabel": "nazwa do instancji",
+      "pos": [740, 284],
+      "size": [250, 76],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 58, "end_line": 66, "label": "GetInstance" }]
+    },
+    {
+      "id": "contract",
+      "type": "frontend",
+      "label": "IDatabaseConnection",
+      "sublabel": "kontrakt CRUD",
+      "pos": [36, 522],
+      "size": [190, 70],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 11, "end_line": 22, "label": "operacje interfejsu" }]
+    },
+    {
+      "id": "connection",
+      "type": "backend",
+      "label": "DatabaseConnection",
+      "sublabel": "max 3, cyklicznie",
+      "tag": "Object Pool",
+      "pos": [340, 516],
+      "size": [250, 82],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 97, "end_line": 167, "label": "prywatna implementacja" }]
+    },
+    {
+      "id": "records",
+      "type": "database",
+      "label": "List<Record>",
+      "sublabel": "rekordy i nextId",
+      "pos": [750, 520],
+      "size": [190, 74],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 67, "end_line": 68, "label": "stan bazy" }]
+    },
+    {
+      "id": "record",
+      "type": "database",
+      "label": "Record",
+      "sublabel": "Id, Name, Age",
+      "pos": [770, 700],
+      "size": [150, 64],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 25, "end_line": 42, "label": "kształt rekordu" }]
+    },
+    {
+      "id": "console",
+      "type": "external",
+      "label": "Console",
+      "sublabel": "komunikaty operacji",
+      "pos": [385, 710],
+      "size": [160, 64],
+      "sources": [{ "path": "ZTP/Ztp01/Program.cs", "line": 111, "end_line": 165, "label": "WriteLine w CRUD" }]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Prywatne typy ConnectionManager",
+      "wraps": ["manager", "database", "registry", "connection", "records", "record"]
+    }
+  ],
+  "connections": [
+    {
+      "id": "main-uses-manager",
+      "from": "main",
+      "to": "manager",
+      "label": "Instancje",
+      "variant": "emphasis"
+    },
+    {
+      "id": "manager-gets-database",
+      "from": "manager",
+      "to": "database",
+      "label": "GetInstance(nazwa)",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "database-stores-registry",
+      "from": "database",
+      "to": "registry",
+      "label": "rejestr nazw",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "database-lends-connection",
+      "from": "database",
+      "to": "connection",
+      "label": "GetConnection()",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "connection-implements-contract",
+      "from": "connection",
+      "to": "contract",
+      "label": "implementuje",
+      "variant": "dashed",
+      "fromSide": "left",
+      "toSide": "right"
+    },
+    {
+      "id": "connection-mutates-records",
+      "from": "connection",
+      "to": "records",
+      "label": "CRUD rekordów",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "records-contain-record",
+      "from": "records",
+      "to": "record",
+      "label": "0..n",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "connection-writes-console",
+      "from": "connection",
+      "to": "console",
+      "label": "WriteLine",
+      "fromSide": "bottom",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Singleton",
+      "items": [
+        "ConnectionManager ma prywatny konstruktor i jedno pole instance.",
+        "Main bierze dostęp wyłącznie przez ConnectionManager.Instancje."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Multiton",
+      "items": [
+        "GetInstance zwraca istniejącą Database albo tworzy jedną dla nazwy.",
+        "Student i Nauczyciel są osobnymi bazami; ta sama nazwa współdzieli rekordy."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Object Pool",
+      "items": [
+        "Każda baza trzyma najwyżej trzy DatabaseConnection.",
+        "Czwarte GetConnection zwraca pierwsze połączenie z puli."
+      ]
+    }
+  ]
+}

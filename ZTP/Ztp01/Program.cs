@@ -40,8 +40,8 @@ class Record
         return $"Record [ID={Id}, Name={Name}, Age={Age}]";
     }
 }
-// Singleton
-class ConnectionManager
+
+class ConnectionManager // Singleton
 {
     private static readonly ConnectionManager instance = new(); // tworzy jedną instancję
     public static ConnectionManager Instancje => instance;// daje dostep do singleton
@@ -52,7 +52,7 @@ class ConnectionManager
     }
 
     // Prosta baza danych
-    private class Database
+    private class Database // Multiton
     {
         //Multiton
         private static readonly Dictionary<string, Database> instances = new();
@@ -94,7 +94,7 @@ class ConnectionManager
         // Prywatna klasa wewnętrzna implementująca interfejs DatabaseConnection
         // W Javie korzystamy z cech klas wewnętrznych, w C# ta klasa musiałaby posiadać
         // referencję na obiekt klasy Database
-        private class DatabaseConnection : IDatabaseConnection
+        private class DatabaseConnection : IDatabaseConnection // objectpool
         {
             private readonly Database db;
 
@@ -173,44 +173,46 @@ public class Ztp01
 {
     public static void Main(string[] args)
     {
+        // Multiton
         /*
-        // Tworzenie bazy danych
-        // Database database = new Database();
         Database db1 = Database.GetInstance("student");
         Database db2 = Database.GetInstance("nauczyciel");
         Database db3 = Database.GetInstance("student");
 
-        // Tworzenie połączenia z bazą danych (klient operuje na interfejsie)
         IDatabaseConnection connection = db1.GetConnection();
-
-        // Operacje na bazie danych za pośrednictwem połączenia
         connection.AddRecord("Piotr", 25);
         connection.ShowAllRecords();
-        // Sprawdzenie multiton
-        Console.WriteLine(ReferenceEquals(db1,db2));//false
-        Console.WriteLine(ReferenceEquals(db1,db3));//true
+
+        Console.WriteLine(ReferenceEquals(db1, db2)); // False
+        Console.WriteLine(ReferenceEquals(db1, db3)); // True
         */
-        // Sprawdzenie object pool
+
+        // Test Singleton
         var manager = ConnectionManager.Instancje;
+        var manager2 = ConnectionManager.Instancje;
+        Console.WriteLine(ReferenceEquals(manager, manager2));
+
+        // Test Multiton
+        var student1 = manager.GetDatabaseConnection("Student");
+        var student2 = manager.GetDatabaseConnection("Student");
+        var nauczyciel = manager.GetDatabaseConnection("Nauczyciel");
+
+        student1.AddRecord("Piotr", 25);
+        student2.ShowAllRecords();
+        nauczyciel.AddRecord("Anna", 40);
+        nauczyciel.ShowAllRecords();
+
+        // Test ObjectPool
         var c1 = manager.GetDatabaseConnection("Student");
         var c2 = manager.GetDatabaseConnection("Student");
         var c3 = manager.GetDatabaseConnection("Student");
         var c4 = manager.GetDatabaseConnection("Student");
-        Console.WriteLine(ReferenceEquals(c1, c2));//false
-        Console.WriteLine(ReferenceEquals(c1, c3));//false
-        Console.WriteLine(ReferenceEquals(c1, c4));//true
-        c1.AddRecord("Piotr", 25);
-        c2.ShowAllRecords();
-        var c5 = manager.GetDatabaseConnection("Student");
-        c5.ShowAllRecords();
-        var nauczyciel = manager.GetDatabaseConnection("Nauczyciel");
-        Console.WriteLine("---------");
-        nauczyciel.AddRecord("Anna", 40);
-        c1.ShowAllRecords();
-        Console.WriteLine("---------");
-        nauczyciel.ShowAllRecords();
+
+        Console.WriteLine(ReferenceEquals(c1, c2));
+        Console.WriteLine(ReferenceEquals(c1, c3));
+        Console.WriteLine(ReferenceEquals(c1, c4));
     }
 }
 // Baza - multiton ✓
 // Main -> ConnectionManager - singleton ✓
-// Połączeniami - object pool: max3-cyklicznie
+// Połączeniami - object pool: max3-cyklicznie ✓
