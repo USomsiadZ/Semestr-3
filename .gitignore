@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Python (ASC, manim)
+__pycache__/
+*.pyc
+
+# .NET / C# (ZTP)
+bin/
+obj/
+.vs/
+*.user
+
+# manim (render)
+media/
+
+# IDE
+.idea/
